@@ -1,4 +1,5 @@
-### **1. Theoretical Foundation**  
+# Problem 1
+ 
 Projectile motion follows Newton's equations of motion. We start with the fundamental kinematic equations:  
 
 \[

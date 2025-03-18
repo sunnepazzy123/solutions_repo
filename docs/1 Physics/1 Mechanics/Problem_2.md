@@ -1,4 +1,4 @@
-# Theoretical Foundation
+# Problem 2
 
 ## Governing Equation
 The motion of a forced damped pendulum is described by the following differential equation:
