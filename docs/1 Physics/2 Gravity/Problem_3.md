@@ -62,7 +62,7 @@ We will now implement the simulation using Python. We will solve the equations o
 ![payload Trajectory](../../_pics/payloadTrajectory.png)
 
 
-### Explanation of the Code
+### Explanation of the Diagram
 
 1. **Initial Conditions**: The initial position and velocity of the payload are provided in the code. The payload starts 500 km above Earth's surface with an initial velocity of 7.8 km/s (roughly the orbital velocity).
    
