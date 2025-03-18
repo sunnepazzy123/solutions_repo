@@ -60,6 +60,26 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#markdown-document-analyzing-payload-trajectories-near-earth">Markdown Document: Analyzing Payload Trajectories Near Earth</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#gravitational-principles-and-laws">Gravitational Principles and Laws</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-analysis-and-simulation">Numerical Analysis and Simulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#python-script-simulating-payload-trajectories">Python Script: Simulating Payload Trajectories</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-code">Explanation of the Code</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#types-of-trajectories">Types of Trajectories</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#visualizing-escape-velocity-and-orbital-insertion">Visualizing Escape Velocity and Orbital Insertion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +192,88 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-3">Problem 3</h1>
+<h3 id="markdown-document-analyzing-payload-trajectories-near-earth">Markdown Document: Analyzing Payload Trajectories Near Earth</h3>
+<h2 id="introduction">Introduction</h2>
+<p>The study of trajectories near Earth is crucial for space mission planning, satellite deployment, and understanding celestial mechanics. The type of trajectory a payload follows depends on several factors, including its initial position, velocity, and the forces acting on it. This document explores different possible trajectories, such as parabolic, hyperbolic, and elliptical paths, and develops a computational tool to simulate these trajectories under Earth's gravity. </p>
+<p>We will use fundamental gravitational principles like Newton's Law of Gravitation and Kepler's Laws to analyze and simulate the motion of a payload. Numerical methods, such as the Runge-Kutta method, will be used for solving the equations of motion and visualizing the results.</p>
+<h3 id="gravitational-principles-and-laws">Gravitational Principles and Laws</h3>
+<ol>
+<li><strong>Newton’s Law of Gravitation</strong> states that the force between two masses is given by:</li>
+</ol>
+<p>[
+   F = G \frac{m_1 m_2}{r^2}
+   ]</p>
+<p>Where:
+   - <span class="arithmatex">\( G \)</span> is the gravitational constant (<span class="arithmatex">\(6.674 \times 10^{-11} \, \text{Nm}^2/\text{kg}^2\)</span>)
+   - <span class="arithmatex">\( m_1 \)</span> and <span class="arithmatex">\( m_2 \)</span> are the masses of the two bodies (Earth and the payload)
+   - <span class="arithmatex">\( r \)</span> is the distance between the centers of the two masses</p>
+<ol>
+<li><strong>Orbital Mechanics</strong>: Based on the energy of the payload, different trajectories arise:</li>
+<li><strong>Elliptical Orbit</strong>: If the velocity is below escape velocity, the trajectory is elliptical.</li>
+<li><strong>Parabolic Trajectory</strong>: If the velocity is exactly at escape velocity, the trajectory is parabolic.</li>
+<li>
+<p><strong>Hyperbolic Trajectory</strong>: If the velocity exceeds escape velocity, the trajectory is hyperbolic, resulting in escape from Earth’s gravity.</p>
+</li>
+<li>
+<p><strong>Kepler’s Laws</strong>: These describe the motion of planets around the sun, and the principles can be applied to orbital mechanics:</p>
+</li>
+<li>Orbits are ellipses with the center of mass at one focus.</li>
+<li>A line connecting a planet to the sun sweeps out equal areas in equal times.</li>
+<li>The square of the orbital period is proportional to the cube of the semi-major axis.</li>
+</ol>
+<h3 id="numerical-analysis-and-simulation">Numerical Analysis and Simulation</h3>
+<p>To compute the path of the payload, we will solve the equations of motion numerically using the gravitational force. We'll simulate the motion of the payload under Earth's gravity, using the initial conditions like the position, velocity, and altitude. The motion will be analyzed for various trajectories.</p>
+<h4 id="equations-of-motion">Equations of Motion</h4>
+<p>The motion of the payload is governed by Newton's second law:</p>
+<div class="arithmatex">\[
+\vec{F} = m \cdot \vec{a}
+\]</div>
+<p>The acceleration is given by the gravitational force divided by the mass of the payload:</p>
+<div class="arithmatex">\[
+\vec{a} = - \frac{G M_{\text{Earth}}}{r^2} \hat{r}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\( G \)</span> is the gravitational constant
+- <span class="arithmatex">\( M_{\text{Earth}} \)</span> is the mass of Earth
+- <span class="arithmatex">\( r \)</span> is the distance between Earth and the payload
+- <span class="arithmatex">\( \hat{r} \)</span> is the unit vector in the radial direction</p>
+<h3 id="python-script-simulating-payload-trajectories">Python Script: Simulating Payload Trajectories</h3>
+<p>We will now implement the simulation using Python. We will solve the equations of motion numerically using the Runge-Kutta method.</p>
+<p><img alt="payload Trajectory" src="../../../_pics/payloadTrajectory.png"/></p>
+<h3 id="explanation-of-the-code">Explanation of the Code</h3>
+<ol>
+<li>
+<p><strong>Initial Conditions</strong>: The initial position and velocity of the payload are provided in the code. The payload starts 500 km above Earth's surface with an initial velocity of 7.8 km/s (roughly the orbital velocity).</p>
+</li>
+<li>
+<p><strong>Gravity Function</strong>: This function computes the acceleration due to gravity at each point in the trajectory. The force of gravity is calculated using Newton’s law, and acceleration is obtained by dividing the force by the mass of the payload.</p>
+</li>
+<li>
+<p><strong>Runge-Kutta Method</strong>: This numerical method is used to solve the system of differential equations (the motion equations) with a given time step. It computes the trajectory iteratively and stores the results at each time step.</p>
+</li>
+<li>
+<p><strong>Plotting</strong>: The resulting trajectory is plotted in a 2D plane to visualize the path of the payload as it moves under the influence of Earth's gravity.</p>
+</li>
+</ol>
+<h3 id="types-of-trajectories">Types of Trajectories</h3>
+<ol>
+<li>
+<p><strong>Elliptical Orbit</strong>: If the initial velocity is less than the escape velocity, the payload will follow an elliptical orbit around the Earth.</p>
+</li>
+<li>
+<p><strong>Parabolic Trajectory</strong>: At the exact escape velocity, the trajectory becomes parabolic, indicating that the payload will escape Earth's gravitational influence, but it will never return.</p>
+</li>
+<li>
+<p><strong>Hyperbolic Trajectory</strong>: If the initial velocity exceeds the escape velocity, the payload follows a hyperbolic trajectory, which is characteristic of a gravitational escape trajectory.</p>
+</li>
+</ol>
+<h3 id="visualizing-escape-velocity-and-orbital-insertion">Visualizing Escape Velocity and Orbital Insertion</h3>
+<ul>
+<li><strong>Escape Velocity</strong>: The minimum velocity needed for an object to escape Earth's gravity. The escape velocity at Earth's surface is approximately 11.2 km/s.</li>
+<li><strong>Orbital Insertion</strong>: Achieved when the payload reaches a stable orbit, typically requiring a velocity of about 7.8 km/s for low Earth orbit.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>This simulation tool provides a simple yet effective way to visualize the motion of a payload under Earth's gravity. By adjusting the initial conditions, we can simulate different types of trajectories (elliptical, parabolic, hyperbolic) and understand their relevance in real-world space missions, such as orbital insertion, reentry, or escape. The computational tool can be expanded for more complex scenarios, such as multi-body gravitational interactions and perturbations due to the Moon or other celestial bodies.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
