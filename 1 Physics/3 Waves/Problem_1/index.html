@@ -66,6 +66,24 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-select-a-regular-polygon">1. Select a Regular Polygon</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-position-the-sources">2. Position the Sources</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-wave-equations">3. Wave Equations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-superposition-of-waves">4. Superposition of Waves</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-analysis-of-interference-patterns">5. Analysis of Interference Patterns</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-visualization">6. Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#7-interpretation-of-results">7. Interpretation of Results</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#8-deliverables">8. Deliverables</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion:</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +190,64 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<p>To solve this problem, let's break it down into the key steps:</p>
+<h3 id="1-select-a-regular-polygon">1. <strong>Select a Regular Polygon</strong></h3>
+<p>Choose a regular polygon for simplicity. For this case, we will start with a <strong>square</strong> (4 sides). This can later be generalized to other polygons like an equilateral triangle or pentagon.</p>
+<h3 id="2-position-the-sources">2. <strong>Position the Sources</strong></h3>
+<p>The wave sources are placed at the vertices of the chosen polygon. For a square with side length <span class="arithmatex">\(a\)</span>, the vertices of the square are positioned at:</p>
+<ul>
+<li><span class="arithmatex">\( (0, 0) \)</span></li>
+<li><span class="arithmatex">\( (a, 0) \)</span></li>
+<li><span class="arithmatex">\( (a, a) \)</span></li>
+<li><span class="arithmatex">\( (0, a) \)</span></li>
+</ul>
+<h3 id="3-wave-equations">3. <strong>Wave Equations</strong></h3>
+<p>The wave emitted from each source is described by the following equation:</p>
+<p>[
+   \psi(r, t) = A \cdot \cos(k \cdot r - \omega \cdot t + \phi)
+   ]</p>
+<p>where:
+   - <span class="arithmatex">\( \psi(r, t) \)</span> is the displacement of the water surface at point <span class="arithmatex">\(r\)</span> (distance from the source) and time <span class="arithmatex">\(t\)</span>.
+   - <span class="arithmatex">\( A \)</span> is the amplitude of the wave.
+   - <span class="arithmatex">\( k = \frac{2 \pi}{\lambda} \)</span> is the wave number, related to the wavelength <span class="arithmatex">\( \lambda \)</span>.
+   - <span class="arithmatex">\( \omega = 2 \pi f \)</span> is the angular frequency, related to the frequency <span class="arithmatex">\(f\)</span>.
+   - <span class="arithmatex">\( r \)</span> is the distance from the source to the point on the surface.
+   - <span class="arithmatex">\( \phi \)</span> is the initial phase of the wave.</p>
+<p>For each point source at position <span class="arithmatex">\( (x_s, y_s) \)</span>, the wave equation becomes:</p>
+<p>[
+   \psi_s(r, t) = A \cdot \cos(k \cdot \sqrt{(x - x_s)^2 + (y - y_s)^2} - \omega \cdot t + \phi)
+   ]</p>
+<h3 id="4-superposition-of-waves">4. <strong>Superposition of Waves</strong></h3>
+<p>The principle of superposition tells us that the displacement at a point on the water surface due to multiple wave sources is the sum of the displacements from each individual source.</p>
+<p>If there are <span class="arithmatex">\(N\)</span> sources located at the vertices of the polygon, the total displacement at a point <span class="arithmatex">\( (x, y) \)</span> on the water surface is:</p>
+<p>[
+   \psi_{\text{total}}(x, y, t) = \sum_{i=1}^{N} \psi_i(x, y, t)
+   ]</p>
+<p>Each term in the sum corresponds to the displacement from the wave source at vertex <span class="arithmatex">\(i\)</span>, and we use the wave equation for each source.</p>
+<h3 id="5-analysis-of-interference-patterns">5. <strong>Analysis of Interference Patterns</strong></h3>
+<ul>
+<li><strong>Constructive interference</strong> occurs when the waves are in phase, leading to amplification of the wave at that point.</li>
+<li><strong>Destructive interference</strong> occurs when the waves are out of phase, leading to cancellation at that point.</li>
+<li>We can observe regions of constructive and destructive interference by evaluating the total displacement <span class="arithmatex">\( \psi_{\text{total}}(x, y, t) \)</span> across different points on the water surface.</li>
+</ul>
+<h3 id="6-visualization">6. <strong>Visualization</strong></h3>
+<p>We will use Python and Matplotlib to visualize the interference patterns. The water surface will be represented by a grid of points, and for each point, we will calculate the displacement <span class="arithmatex">\( \psi_{\text{total}}(x, y, t) \)</span> as the sum of the contributions from the sources.</p>
+<p>#### Example Python Code Implementation:</p>
+<p><img alt="payload Trajectory" src="../../../_pics/wave.png"/></p>
+<h3 id="7-interpretation-of-results">7. <strong>Interpretation of Results</strong></h3>
+<ul>
+<li><strong>Constructive interference</strong> will be shown as areas where the displacement is large (high wave amplitude), typically in regions where the sources' waves meet in phase.</li>
+<li><strong>Destructive interference</strong> will be shown as areas where the displacement is small (or even zero), where the sources' waves cancel each other out.</li>
+<li>By adjusting parameters such as the wavelength, frequency, and the number of sources, we can explore how the interference pattern changes.</li>
+</ul>
+<h3 id="8-deliverables">8. <strong>Deliverables</strong></h3>
+<ul>
+<li><strong>Python script</strong>: The provided code can be used to simulate the wave interference pattern for different regular polygons by modifying the <code>sources</code> array.</li>
+<li><strong>Markdown document</strong>: The explanations of the problem, methodology, and results should be included, as well as a description of how to use the Python code.</li>
+<li><strong>Graphical representations</strong>: The plots generated by the Python code will visually depict the interference patterns.</li>
+</ul>
+<h3 id="conclusion">Conclusion:</h3>
+<p>The interference pattern of waves emitted from point sources placed at the vertices of a regular polygon (such as a square) will exhibit regions of constructive and destructive interference. This pattern can be visualized and analyzed for different configurations, helping to understand the effects of wave superposition in such systems.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
