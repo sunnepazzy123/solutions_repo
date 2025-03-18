@@ -48,39 +48,9 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#projectile-motion-description-with-equations">Projectile Motion Description with Equations</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#1-assumptions-in-projectile-motion">1. Assumptions in Projectile Motion:</a>
-</li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#2-equations-of-motion">2. Equations of Motion:</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#horizontal-motion-constant-velocity">Horizontal Motion (Constant Velocity):</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#vertical-motion-accelerated-motion-due-to-gravity">Vertical Motion (Accelerated Motion due to Gravity):</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#3-key-parameters-in-projectile-motion">3. Key Parameters in Projectile Motion:</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#a-time-of-flight-total-time-the-projectile-remains-in-the-air">(a) Time of Flight (Total time the projectile remains in the air)</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#b-maximum-height-highest-point-reached-by-the-projectile">(b) Maximum Height (Highest point reached by the projectile)</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#c-range-total-horizontal-distance-covered">(c) Range (Total horizontal distance covered)</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#4-summary">4. Summary:</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#projectile-motion-simulation">Projectile Motion Simulation</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#projectile-motion-simulation_1">Projectile Motion Simulation</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
+<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Theoretical Foundation</a>
 </li>
 </ul>
 </li>
@@ -201,80 +171,65 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
-<h3 id="projectile-motion-description-with-equations"><strong>Projectile Motion Description with Equations</strong></h3>
-<p>Projectile motion describes the motion of an object launched into the air under the influence of gravity, following a curved trajectory called a <strong>parabola</strong>. It is analyzed as two separate motions in <strong>horizontal</strong> and <strong>vertical</strong> directions.</p>
-<h4 id="1-assumptions-in-projectile-motion"><strong>1. Assumptions in Projectile Motion:</strong></h4>
+<h3 id="1-theoretical-foundation"><strong>1. Theoretical Foundation</strong></h3>
+<p>Projectile motion follows Newton's equations of motion. We start with the fundamental kinematic equations:  </p>
+<div class="arithmatex">\[
+x = v_0 \cos(\theta) t
+\]</div>
+<div class="arithmatex">\[
+y = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+\]</div>
+<p>where:<br/>
+- <span class="arithmatex">\( v_0 \)</span> is the initial velocity,<br/>
+- <span class="arithmatex">\( \theta \)</span> is the launch angle,<br/>
+- <span class="arithmatex">\( g \)</span> is gravitational acceleration (9.81 m/s²),<br/>
+- <span class="arithmatex">\( t \)</span> is time.</p>
+<p>The <strong>time of flight</strong> is derived by setting <span class="arithmatex">\( y = 0 \)</span>:</p>
+<div class="arithmatex">\[
+t_f = \frac{2 v_0 \sin(\theta)}{g}
+\]</div>
+<p>The <strong>range (horizontal distance)</strong> is:</p>
+<div class="arithmatex">\[
+R = \frac{v_0^2 \sin(2\theta)}{g}
+\]</div>
+<p>This equation shows that:
+- The maximum range is achieved at <span class="arithmatex">\( \theta = 45^\circ \)</span>.
+- Increasing initial velocity increases the range.
+- Gravitational acceleration <span class="arithmatex">\( g \)</span> inversely affects the range.</p>
+<h3 id="2-analysis-of-the-range"><strong>2. Analysis of the Range</strong></h3>
 <ul>
-<li>The only force acting on the projectile (neglecting air resistance) is <strong>gravity</strong> <span class="arithmatex">\(g = 9.81 \, m/s^2\)</span>.</li>
-<li>The motion is <strong>independent in horizontal and vertical directions</strong>.</li>
-<li>The horizontal motion has <strong>constant velocity</strong> (no acceleration).</li>
-<li>The vertical motion has <strong>uniform acceleration</strong> due to gravity.</li>
+<li><strong>Effect of Angle</strong>: The range is maximized at <span class="arithmatex">\( 45^\circ \)</span>. Below or above this angle, the range decreases.  </li>
+<li><strong>Effect of Initial Velocity</strong>: Increasing <span class="arithmatex">\( v_0 \)</span> increases the range quadratically (<span class="arithmatex">\( R \propto v_0^2 \)</span>).  </li>
+<li><strong>Effect of Gravity</strong>: A higher <span class="arithmatex">\( g \)</span> (e.g., on Jupiter) reduces the range, while a lower <span class="arithmatex">\( g \)</span> (e.g., on the Moon) increases it.</li>
 </ul>
-<hr/>
-<h3 id="2-equations-of-motion"><strong>2. Equations of Motion:</strong></h3>
-<p>Let:</p>
+<h3 id="3-practical-applications"><strong>3. Practical Applications</strong></h3>
 <ul>
-<li><span class="arithmatex">\(v_0\)</span> = initial velocity  </li>
-<li><span class="arithmatex">\(\theta\)</span> = launch angle  </li>
-<li><span class="arithmatex">\(v_{0x} = v_0 \cos\theta\)</span> (initial horizontal velocity)  </li>
-<li><span class="arithmatex">\(v_{0y} = v_0 \sin\theta\)</span> (initial vertical velocity)  </li>
-<li><span class="arithmatex">\(g = 9.81 \, m/s^2\)</span> (acceleration due to gravity)  </li>
-<li><span class="arithmatex">\(t\)</span> = time  </li>
-<li><span class="arithmatex">\(x\)</span> = horizontal displacement  </li>
-<li><span class="arithmatex">\(y\)</span> = vertical displacement</li>
+<li><strong>Sports</strong>: Optimizing launch angles in football, golf, and basketball.  </li>
+<li><strong>Military &amp; Aerospace</strong>: Calculating missile trajectories.  </li>
+<li><strong>Engineering</strong>: Designing water fountains, rockets, and ballistics.</li>
 </ul>
-<h4 id="horizontal-motion-constant-velocity"><strong>Horizontal Motion (Constant Velocity):</strong></h4>
-<p>$$
-x = v_{0x} t = (v_0 \cos\theta) t
-$$<br/>
-$$
-v_x = v_0 \cos\theta
-$$<br/>
-<span class="arithmatex">\(\Rightarrow\)</span> No acceleration in the horizontal direction.</p>
-<h4 id="vertical-motion-accelerated-motion-due-to-gravity"><strong>Vertical Motion (Accelerated Motion due to Gravity):</strong></h4>
-<p>$$
-y = v_{0y} t - \frac{1}{2} g t^2
-$$
-$$
-v_y = v_{0y} - g t
-$$<br/>
-<span class="arithmatex">\(\Rightarrow\)</span> Velocity decreases until the projectile reaches the highest point, then increases downward.</p>
-<hr/>
-<h3 id="3-key-parameters-in-projectile-motion"><strong>3. Key Parameters in Projectile Motion:</strong></h3>
-<h4 id="a-time-of-flight-total-time-the-projectile-remains-in-the-air"><strong>(a) Time of Flight</strong> (Total time the projectile remains in the air)</h4>
-<p>$$
-T = \frac{2 v_0 \sin\theta}{g}
-$$<br/>
-derived from setting <span class="arithmatex">\(y = 0\)</span> when the projectile lands</p>
-<h4 id="b-maximum-height-highest-point-reached-by-the-projectile"><strong>(b) Maximum Height</strong> (Highest point reached by the projectile)</h4>
-<p>$$
-H = \frac{(v_0 \sin\theta)^2}{2g}
-$$<br/>
-(derived by setting <span class="arithmatex">\(v_y = 0\)</span> at the peak)</p>
-<h4 id="c-range-total-horizontal-distance-covered"><strong>(c) Range</strong> (Total horizontal distance covered)</h4>
-<p>$$
-R = \frac{v_0^2 \sin 2\theta}{g}
-$$<br/>
-(This is maximized when $\theta = 45^\circ $</p>
-<hr/>
-<h3 id="4-summary"><strong>4. Summary:</strong></h3>
+<p><img alt="projectile_motion" src="../../../_pics/projectile_motion.png"/>
+<img alt="projectileRange" src="../../../_pics/projectileRange.png"/></p>
+<h3 id="4-implementation"><strong>4. Implementation</strong></h3>
+<p>A Python script was provided to:
+1. <strong>Simulate projectile motion</strong> for different angles.
+2. <strong>Plot range vs angle</strong> for analysis.
+3. <strong>Visualize trajectories</strong> with different parameters.</p>
+<h3 id="limitations-future-enhancements"><strong>Limitations &amp; Future Enhancements</strong></h3>
 <ul>
-<li>The <strong>horizontal component</strong> remains constant <span class="arithmatex">\(x = v_{0x} t\)</span></li>
-<li>The <strong>vertical component</strong> follows free-fall motion under gravity <span class="arithmatex">\(y = v_{0y} t - \frac{1}{2} g t^2\)</span>.</li>
-<li>The <strong>time of flight, maximum height, and range</strong> depend on the initial velocity and angle of projection.</li>
-<li>The <strong>trajectory is a symmetric parabola</strong>.</li>
+<li><strong>No Air Resistance</strong>: In reality, air drag reduces the range.  </li>
+<li><strong>Uneven Terrain</strong>: The model assumes a flat surface.  </li>
+<li><strong>Variable Gravity</strong>: Not applicable in different planetary conditions.  </li>
 </ul>
-<h2 id="projectile-motion-simulation">Projectile Motion Simulation</h2>
-<p>The following graph shows the trajectory of a projectile launched at different angles.</p>
-<h2 id="projectile-motion-simulation_1">Projectile Motion Simulation</h2>
-<p>The following graph shows the trajectory of a projectile launched at different angles.</p>
-<p>You can find the Python code <a href="../projectile_motion.py">here</a>.</p>
+<p>To improve the model:
+- Add <strong>air resistance</strong> using drag force <span class="arithmatex">\( F_d = \frac{1}{2} C_d \rho A v^2 \)</span>.
+- Model <strong>wind effects</strong> using horizontal forces.
+- Consider <strong>non-uniform gravity</strong> in planetary motion.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
 <a class="btn btn-neutral float-left" href="../../.." title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../Problem_2/" title="Problem 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-right" href="../Problem_2/" title="Theoretical Foundation">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
