@@ -181,41 +181,41 @@
 <div class="section" itemprop="articleBody">
 <h1 id="theoretical-foundation">Theoretical Foundation</h1>
 <h2 id="governing-equation">Governing Equation</h2>
-<p>The motion of a forced damped pendulum is described by the following differential equation:
-[
+<p>The motion of a forced damped pendulum is described by the following differential equation:</p>
+<div class="arithmatex">\[
 \frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \sin \theta = A \cos(\omega t)
-]
-where:
+\]</div>
+<p>where:
 - <span class="arithmatex">\( \theta \)</span> is the angular displacement,
 - <span class="arithmatex">\( \gamma \)</span> is the damping coefficient,
 - <span class="arithmatex">\( \omega_0 = \sqrt{g/L} \)</span> is the natural frequency,
 - <span class="arithmatex">\( A \)</span> is the amplitude of the driving force,
 - <span class="arithmatex">\( \omega \)</span> is the driving frequency.</p>
-<p>For small angles (<span class="arithmatex">\( \theta \approx \sin \theta \)</span>), the equation simplifies to:
-[
+<p>For small angles (<span class="arithmatex">\( \theta \approx \sin \theta \)</span>), the equation simplifies to:</p>
+<div class="arithmatex">\[
 \frac{d^2\theta}{dt^2} + \gamma \frac{d\theta}{dt} + \omega_0^2 \theta = A \cos(\omega t)
-]</p>
+\]</div>
 <h3 id="approximate-solution-for-small-angles">Approximate Solution for Small Angles</h3>
-<p>The homogeneous part of the equation has a solution of the form:
-[
+<p>The homogeneous part of the equation has a solution of the form:</p>
+<div class="arithmatex">\[
 \theta_h(t) = e^{-\gamma t/2} (C_1 \cos \Omega t + C_2 \sin \Omega t)
-]
-where <span class="arithmatex">\( \Omega = \sqrt{\omega_0^2 - (\gamma/2)^2} \)</span>.</p>
-<p>The particular solution for the forced response is given by:
-[
+\]</div>
+<p>where <span class="arithmatex">\( \Omega = \sqrt{\omega_0^2 - (\gamma/2)^2} \)</span>.</p>
+<p>The particular solution for the forced response is:</p>
+<div class="arithmatex">\[
 \theta_p(t) = \frac{A}{\omega_0^2 - \omega^2 + i\gamma \omega} e^{i\omega t}
-]
-Combining both parts gives the general solution:
-[
+\]</div>
+<p>The general solution is:</p>
+<div class="arithmatex">\[
 \theta(t) = e^{-\gamma t/2} (C_1 \cos \Omega t + C_2 \sin \Omega t) + \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\gamma \omega)^2}} \cos(\omega t - \delta)
-]
-where <span class="arithmatex">\( \delta \)</span> is the phase lag.</p>
+\]</div>
+<p>where <span class="arithmatex">\( \delta \)</span> is the phase lag.</p>
 <h3 id="resonance-condition">Resonance Condition</h3>
-<p>Resonance occurs when the driving frequency <span class="arithmatex">\( \omega \)</span> approaches the natural frequency <span class="arithmatex">\( \omega_0 \)</span>, leading to a peak in oscillation amplitude:
-[
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\( \omega \)</span> approaches the natural frequency <span class="arithmatex">\( \omega_0 \)</span>, leading to a peak in oscillation amplitude:</p>
+<div class="arithmatex">\[
 \omega_r = \sqrt{\omega_0^2 - \frac{\gamma^2}{2}}
-]
-At resonance, energy transfer is maximized, leading to large oscillations unless damped.</p>
+\]</div>
+<p>At resonance, energy transfer is maximized, leading to large oscillations unless damped.</p>
 <h1 id="analysis-of-dynamics">Analysis of Dynamics</h1>
 <h3 id="influence-of-parameters">Influence of Parameters</h3>
 <ul>
@@ -237,7 +237,7 @@ At resonance, energy transfer is maximized, leading to large oscillations unless
 <h1 id="implementation">Implementation</h1>
 <h3 id="python-simulation">Python Simulation</h3>
 <p>We use the Runge-Kutta method to simulate the pendulum motion:</p>
-<p><img alt="pendemlum" src="../../../_pics/pendemlum.png"/></p>
+<p><img alt="pendulum" src="../../../_pics/pendemlum.png"/></p>
 <h1 id="discussion">Discussion</h1>
 <h2 id="limitations">Limitations</h2>
 <ul>
