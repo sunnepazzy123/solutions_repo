@@ -1,87 +1,63 @@
-# Problem 1
- 
-### **Projectile Motion Description with Equations**  
- 
-Projectile motion describes the motion of an object launched into the air under the influence of gravity, following a curved trajectory called a **parabola**. It is analyzed as two separate motions in **horizontal** and **vertical** directions.
- 
-#### **1. Assumptions in Projectile Motion:**
- 
-- The only force acting on the projectile (neglecting air resistance) is **gravity** $g = 9.81 \, m/s^2$.
-- The motion is **independent in horizontal and vertical directions**.
-- The horizontal motion has **constant velocity** (no acceleration).
-- The vertical motion has **uniform acceleration** due to gravity.
- 
----
- 
-### **2. Equations of Motion:**
- 
-Let:
- 
-- $v_0$ = initial velocity  
-- $\theta$ = launch angle  
-- $v_{0x} = v_0 \cos\theta$ (initial horizontal velocity)  
-- $v_{0y} = v_0 \sin\theta$ (initial vertical velocity)  
-- $g = 9.81 \, m/s^2$ (acceleration due to gravity)  
-- $t$ = time  
-- $x$ = horizontal displacement  
-- $y$ = vertical displacement
- 
-#### **Horizontal Motion (Constant Velocity):**  
-$$
-x = v_{0x} t = (v_0 \cos\theta) t
-$$  
-$$
-v_x = v_0 \cos\theta
-$$  
-\(\Rightarrow\) No acceleration in the horizontal direction.
- 
-#### **Vertical Motion (Accelerated Motion due to Gravity):**  
-$$
-y = v_{0y} t - \frac{1}{2} g t^2
-$$
-$$
-v_y = v_{0y} - g t
-$$  
-\(\Rightarrow\) Velocity decreases until the projectile reaches the highest point, then increases downward.
- 
----
- 
-### **3. Key Parameters in Projectile Motion:**
- 
-#### **(a) Time of Flight** (Total time the projectile remains in the air)  
-$$
-T = \frac{2 v_0 \sin\theta}{g}
-$$  
-derived from setting $y = 0$ when the projectile lands
- 
-#### **(b) Maximum Height** (Highest point reached by the projectile)  
-$$
-H = \frac{(v_0 \sin\theta)^2}{2g}
-$$  
-(derived by setting $v_y = 0$ at the peak)
- 
-#### **(c) Range** (Total horizontal distance covered)  
-$$
-R = \frac{v_0^2 \sin 2\theta}{g}
-$$  
-(This is maximized when $\theta = 45^\circ $
- 
----
- 
-### **4. Summary:**
-- The **horizontal component** remains constant $x = v_{0x} t$
-- The **vertical component** follows free-fall motion under gravity $y = v_{0y} t - \frac{1}{2} g t^2$.
-- The **time of flight, maximum height, and range** depend on the initial velocity and angle of projection.
-- The **trajectory is a symmetric parabola**.
- 
-## Projectile Motion Simulation
- 
-The following graph shows the trajectory of a projectile launched at different angles.
- 
-## Projectile Motion Simulation
- 
-The following graph shows the trajectory of a projectile launched at different angles.
+### **1. Theoretical Foundation**  
+Projectile motion follows Newton's equations of motion. We start with the fundamental kinematic equations:  
 
-You can find the Python code [here](./projectile_motion.py).
+\[
+x = v_0 \cos(\theta) t
+\]
 
- 
+\[
+y = v_0 \sin(\theta) t - \frac{1}{2} g t^2
+\]
+
+where:  
+- \( v_0 \) is the initial velocity,  
+- \( \theta \) is the launch angle,  
+- \( g \) is gravitational acceleration (9.81 m/s²),  
+- \( t \) is time.
+
+The **time of flight** is derived by setting \( y = 0 \):
+
+\[
+t_f = \frac{2 v_0 \sin(\theta)}{g}
+\]
+
+The **range (horizontal distance)** is:
+
+\[
+R = \frac{v_0^2 \sin(2\theta)}{g}
+\]
+
+This equation shows that:
+- The maximum range is achieved at \( \theta = 45^\circ \).
+- Increasing initial velocity increases the range.
+- Gravitational acceleration \( g \) inversely affects the range.
+
+### **2. Analysis of the Range**  
+- **Effect of Angle**: The range is maximized at \( 45^\circ \). Below or above this angle, the range decreases.  
+- **Effect of Initial Velocity**: Increasing \( v_0 \) increases the range quadratically (\( R \propto v_0^2 \)).  
+- **Effect of Gravity**: A higher \( g \) (e.g., on Jupiter) reduces the range, while a lower \( g \) (e.g., on the Moon) increases it.
+
+### **3. Practical Applications**  
+- **Sports**: Optimizing launch angles in football, golf, and basketball.  
+- **Military & Aerospace**: Calculating missile trajectories.  
+- **Engineering**: Designing water fountains, rockets, and ballistics.
+
+![projectile_motion](../../_pics/projectile_motion.png)
+![projectileRange](../../_pics/projectileRange.png)
+
+
+### **4. Implementation**  
+A Python script was provided to:
+1. **Simulate projectile motion** for different angles.
+2. **Plot range vs angle** for analysis.
+3. **Visualize trajectories** with different parameters.
+
+### **Limitations & Future Enhancements**  
+- **No Air Resistance**: In reality, air drag reduces the range.  
+- **Uneven Terrain**: The model assumes a flat surface.  
+- **Variable Gravity**: Not applicable in different planetary conditions.  
+
+To improve the model:
+- Add **air resistance** using drag force \( F_d = \frac{1}{2} C_d \rho A v^2 \).
+- Model **wind effects** using horizontal forces.
+- Consider **non-uniform gravity** in planetary motion.
