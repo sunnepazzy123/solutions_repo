@@ -1,23 +1,57 @@
+import numpy as np
 import matplotlib.pyplot as plt
 
-# Data for the celestial bodies
-celestial_bodies = ['Earth', 'Mars', 'Jupiter']
-first_cosmic_velocity = [7.8, 5.0, 60.2]  # In km/s
-second_cosmic_velocity = [11.2, 5.0, 60.0]  # In km/s
-third_cosmic_velocity = [42.1, 28.0, 60.0]  # In km/s
+# Constants
+G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M_earth = 5.972e24  # Mass of Earth (kg)
+R_earth = 6371e3  # Radius of Earth (m)
 
-# Plotting
-plt.figure(figsize=(10, 6))
-plt.plot(celestial_bodies, first_cosmic_velocity, label="First Cosmic Velocity", linestyle='-', marker='o')
-plt.plot(celestial_bodies, second_cosmic_velocity, label="Second Cosmic Velocity", linestyle='--', marker='o')
-plt.plot(celestial_bodies, third_cosmic_velocity, label="Third Cosmic Velocity", linestyle=':', marker='o')
+# Initial conditions (position in meters, velocity in m/s)
+r0 = np.array([R_earth + 500e3, 0])  # Payload starts 500 km above Earth's surface
+v0 = np.array([0, 7.8e3])  # Initial velocity (approx orbital velocity in m/s)
 
-# Adding labels and title
-plt.title('Comparison of Cosmic Velocities for Different Celestial Bodies')
-plt.xlabel('Celestial Bodies')
-plt.ylabel('Velocity (km/s)')
+# Time parameters
+dt = 10  # Time step (seconds)
+t_max = 10000  # Maximum simulation time (seconds)
+
+# Define the system of differential equations
+def gravity(t, state):
+    r = state[:2]
+    v = state[2:]
+    r_magnitude = np.linalg.norm(r)
+    a = -G * M_earth * r / r_magnitude**3
+    return np.concatenate([v, a])
+
+# Runge-Kutta method to solve the system of equations
+def runge_kutta(f, t0, tf, dt, state0):
+    t_values = np.arange(t0, tf, dt)
+    states = np.zeros((len(t_values), len(state0)))
+    states[0] = state0
+    for i in range(1, len(t_values)):
+        t = t_values[i-1]
+        state = states[i-1]
+        k1 = f(t, state)
+        k2 = f(t + dt / 2, state + dt / 2 * k1)
+        k3 = f(t + dt / 2, state + dt / 2 * k2)
+        k4 = f(t + dt, state + dt * k3)
+        states[i] = state + dt / 6 * (k1 + 2*k2 + 2*k3 + k4)
+    return t_values, states
+
+# Solve the system
+t_values, states = runge_kutta(gravity, 0, t_max, dt, np.concatenate([r0, v0]))
+
+# Extract position data for plotting
+x = states[:, 0]
+y = states[:, 1]
+
+# Plot the trajectory
+plt.figure(figsize=(8, 8))
+plt.plot(x / 1e3, y / 1e3, label="Payload Trajectory")
+plt.scatter(0, 0, color="red", label="Earth", s=100)
+plt.title("Payload Trajectory Near Earth")
+plt.xlabel("X (km)")
+plt.ylabel("Y (km)")
 plt.legend()
 plt.grid(True)
-
-# Show the plot
+plt.axis("equal")
 plt.show()
