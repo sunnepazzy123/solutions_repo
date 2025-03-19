@@ -78,6 +78,20 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#option-1-simplified-task-algorithm-description">Option 1: Simplified Task – Algorithm Description</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#key-concepts">Key Concepts</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#explanation">Explanation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#option-2-advanced-task-full-implementation">Option 2: Advanced Task – Full Implementation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-example-with-networkx">Python Example with networkx</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-implementation">Testing the Implementation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithm-efficiency">Algorithm Efficiency</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +186,82 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h3 id="option-1-simplified-task-algorithm-description">Option 1: Simplified Task – Algorithm Description</h3>
+<p>To calculate the equivalent resistance of a circuit represented by a graph, we can use graph theory principles. The basic idea is to simplify the graph by identifying series and parallel resistor connections and reducing them until a single equivalent resistance is obtained. Here's a breakdown of how we can approach this problem:</p>
+<h3 id="key-concepts">Key Concepts</h3>
+<ol>
+<li>
+<p><strong>Series Connection</strong>: Resistors connected in series have the same current flowing through them, and their total resistance is the sum of their individual resistances.
+   [
+   R_{\text{eq}} = R_1 + R_2 + ... + R_n
+   ]</p>
+</li>
+<li>
+<p><strong>Parallel Connection</strong>: Resistors connected in parallel share the same voltage across them, and their total resistance is the reciprocal of the sum of the reciprocals of their individual resistances.
+   [
+   \frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + ... + \frac{1}{R_n}
+   ]</p>
+</li>
+<li>
+<p><strong>Graph Representation</strong>: A resistor network can be represented as a graph, where nodes represent connection points, and edges represent resistors.</p>
+</li>
+<li>
+<p><strong>Nested Connections</strong>: Combinations of series and parallel resistors can occur in complex structures, so the algorithm needs to handle cases where simplifications must be performed repeatedly.</p>
+</li>
+</ol>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>
+<p><strong>Identifying Series Connections</strong>: We begin by identifying series connections. This is done by finding edges in the graph that are connected in a single path. When we find them, we combine the resistors in that path by summing their individual resistances.</p>
+</li>
+<li>
+<p><strong>Identifying Parallel Connections</strong>: Next, we look for parallel connections. Parallel resistors are typically grouped together where multiple resistors connect to the same pair of nodes. These resistors are combined using the formula for parallel resistance.</p>
+</li>
+<li>
+<p><strong>Iterative Reduction</strong>: After simplifying series and parallel connections, we continue simplifying the graph until only one resistor remains. This iterative process handles nested combinations of resistors.</p>
+</li>
+<li>
+<p><strong>Handling Nested Combinations</strong>: The algorithm works recursively, simplifying the graph at each step. Nested combinations are automatically handled because the algorithm looks for connections at every step, ensuring that each simplification is processed.</p>
+</li>
+</ol>
+<h3 id="option-2-advanced-task-full-implementation">Option 2: Advanced Task – Full Implementation</h3>
+<p>In this option, you would implement the algorithm in a programming language (e.g., Python), leveraging a graph library like <code>networkx</code> to represent and manipulate the circuit graph.</p>
+<p>Here’s an outline for how you might approach the implementation:</p>
+<ol>
+<li>
+<p><strong>Input Representation</strong>: Represent the circuit as a graph, where nodes are the connection points and edges represent resistors with their resistance values.</p>
+</li>
+<li>
+<p><strong>Simplifying the Graph</strong>:</p>
+</li>
+<li><strong>Series Reduction</strong>: Look for nodes that are connected in a straight line (series). Combine their resistances by summing them.</li>
+<li>
+<p><strong>Parallel Reduction</strong>: Look for nodes that share a connection with multiple resistors (parallel). Combine their resistances by the reciprocal rule.</p>
+</li>
+<li>
+<p><strong>Iterative Simplification</strong>: Repeat the series and parallel reductions until only one resistor remains in the graph.</p>
+</li>
+<li>
+<p><strong>Handle Nested Configurations</strong>: Nested series and parallel configurations will naturally be simplified as the graph is reduced iteratively.</p>
+</li>
+<li>
+<p><strong>Efficiency Considerations</strong>: Since the algorithm may require multiple graph traversals, performance could become an issue with large circuits. Using efficient graph traversal techniques (e.g., depth-first search or breadth-first search) could improve the performance.</p>
+</li>
+</ol>
+<h3 id="python-example-with-networkx">Python Example with <code>networkx</code></h3>
+<p>Here’s a simple implementation using Python and <code>networkx</code> to handle graph simplification:</p>
+<p><img alt="circuit" src="../../../_pics/circuit.png"/></p>
+<h3 id="testing-the-implementation">Testing the Implementation</h3>
+<p>You could test the implementation with examples like:
+- Simple series and parallel combinations, e.g., two resistors in series, two resistors in parallel.
+- Nested configurations, e.g., a series combination inside a parallel combination.
+- Complex graphs with multiple cycles and interconnections, ensuring the algorithm reduces the graph correctly.</p>
+<h3 id="algorithm-efficiency">Algorithm Efficiency</h3>
+<ul>
+<li><strong>Time Complexity</strong>: The time complexity mainly depends on how many times we need to traverse and simplify the graph. In the worst case, for each edge, we might need to check series or parallel connections, resulting in O(E) complexity for each traversal, where E is the number of edges.</li>
+<li><strong>Space Complexity</strong>: The space complexity is mainly O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph.</li>
+</ul>
+<p>Potential improvements might include optimizing the detection of series and parallel connections to reduce redundant checks or using a more efficient data structure to represent the circuit.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

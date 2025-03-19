@@ -72,6 +72,20 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-exploration-of-applications">1. Exploration of Applications</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-visualization">4. Visualization</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#deliverables">Deliverables:</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +186,89 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h3 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h3>
+<h4 id="1-exploration-of-applications">1. Exploration of Applications</h4>
+<p>The Lorentz force describes the force experienced by a charged particle moving through an electric (<span class="arithmatex">\( \mathbf{E} \)</span>) and magnetic (<span class="arithmatex">\( \mathbf{B} \)</span>) field. This force is critical in various scientific and engineering fields, with numerous applications that rely on the interaction between charged particles and electromagnetic fields.</p>
+<h5 id="key-systems-where-the-lorentz-force-plays-a-key-role">Key Systems where the Lorentz Force Plays a Key Role:</h5>
+<ol>
+<li><strong>Particle Accelerators (e.g., Cyclotrons, Synchrotrons)</strong>:</li>
+<li>
+<p>Charged particles are accelerated to high speeds using electric fields. The magnetic fields control the trajectory of the particles, bending their path in a circular or spiral motion. The Lorentz force is what keeps the particles on track and allows them to gain energy as they circulate in the accelerator.</p>
+</li>
+<li>
+<p><strong>Mass Spectrometers</strong>:</p>
+</li>
+<li>
+<p>The motion of charged particles (ions) in a magnetic field is used to measure their mass-to-charge ratio. The trajectory of ions in the magnetic field is influenced by the Lorentz force, allowing for the separation of different ions based on their velocity and mass.</p>
+</li>
+<li>
+<p><strong>Plasma Confinement (e.g., Tokamaks)</strong>:</p>
+</li>
+<li>
+<p>In plasma confinement devices, such as Tokamaks or Stellarators, charged particles are contained within a magnetic field to prevent them from escaping. The Lorentz force is used to steer and stabilize the motion of plasma particles in order to achieve controlled nuclear fusion.</p>
+</li>
+<li>
+<p><strong>Magnetic Traps (e.g., Penning Traps)</strong>:</p>
+</li>
+<li>The Lorentz force is utilized to trap charged particles using electric and magnetic fields, which is fundamental in experiments involving the manipulation and study of ions or electrons.</li>
+</ol>
+<h5 id="relevance-of-electric-and-magnetic-fields">Relevance of Electric and Magnetic Fields:</h5>
+<ul>
+<li>The <strong>magnetic field</strong> <span class="arithmatex">\( \mathbf{B} \)</span> governs the motion of charged particles by bending their path. The force exerted by a magnetic field is perpendicular to both the velocity of the particle and the magnetic field direction.</li>
+<li>The <strong>electric field</strong> <span class="arithmatex">\( \mathbf{E} \)</span> can accelerate or decelerate particles, changing their velocity. The force exerted by an electric field acts in the direction of the field.</li>
+</ul>
+<p>In combination, these fields influence the particle's motion, leading to phenomena such as circular or helical paths in uniform magnetic fields or drift motion in crossed electric and magnetic fields.</p>
+<hr/>
+<h4 id="2-simulating-particle-motion">2. Simulating Particle Motion</h4>
+<p>The Lorentz force equation can be written as:</p>
+<div class="arithmatex">\[
+\mathbf{F} = q (\mathbf{E} + \mathbf{v} \times \mathbf{B})
+\]</div>
+<p>where:
+- <span class="arithmatex">\( q \)</span> is the charge of the particle,
+- <span class="arithmatex">\( \mathbf{E} \)</span> is the electric field,
+- <span class="arithmatex">\( \mathbf{B} \)</span> is the magnetic field,
+- <span class="arithmatex">\( \mathbf{v} \)</span> is the velocity of the particle.</p>
+<p>For the simulation, we will solve this equation numerically, applying methods such as the <strong>Euler</strong> or <strong>Runge-Kutta</strong> method to update the position and velocity of the particle at each time step.</p>
+<h5 id="scenarios-to-simulate">Scenarios to Simulate:</h5>
+<ol>
+<li><strong>Uniform Magnetic Field</strong>: A particle in a uniform magnetic field will undergo circular motion. The radius of the circle is called the Larmor radius.</li>
+<li><strong>Combined Electric and Magnetic Fields</strong>: In this scenario, the particle will follow a helical path due to the combined forces of the electric and magnetic fields.</li>
+<li><strong>Crossed Electric and Magnetic Fields</strong>: The particle will exhibit drift motion, such as the <strong>E × B drift</strong>.</li>
+</ol>
+<h5 id="image-for-simulating-the-motion">Image for Simulating the Motion:</h5>
+<p><img alt="electromagnetism" src="../../../_pics/electromagnetism.png"/></p>
+<h4 id="3-parameter-exploration">3. Parameter Exploration</h4>
+<p>By adjusting the following parameters, we can explore the effect on the particle's motion:
+- <strong>Magnetic Field Strength (<span class="arithmatex">\( B \)</span>)</strong>: Stronger fields result in smaller circular paths (shorter Larmor radius).
+- <strong>Electric Field Strength (<span class="arithmatex">\( E \)</span>)</strong>: Electric fields accelerate or decelerate the particle, changing its velocity and trajectory.
+- <strong>Initial Velocity (<span class="arithmatex">\( \mathbf{v}_0 \)</span>)</strong>: The initial velocity affects the curvature of the trajectory. Higher velocities result in larger radii.
+- <strong>Charge and Mass (<span class="arithmatex">\( q, m \)</span>)</strong>: The mass and charge of the particle influence its response to the forces. Lighter particles experience a greater deflection in the magnetic field.</p>
+<p>We can vary these parameters and observe how they influence the particle's motion and trajectory.</p>
+<hr/>
+<h4 id="4-visualization">4. Visualization</h4>
+<p>The Python code above provides a 2D visualization of the particle’s trajectory in a uniform magnetic field. To observe phenomena like the <strong>Larmor radius</strong> and <strong>drift velocity</strong>, we can enhance the visualization by plotting in 3D or adding more complex field configurations.</p>
+<ul>
+<li><strong>Larmor Radius</strong>: The radius of the circular motion of the particle in the magnetic field. It can be calculated using the formula:</li>
+</ul>
+<div class="arithmatex">\[
+r_L = \frac{mv}{qB}
+\]</div>
+<ul>
+<li><strong>Drift Velocity</strong>: When electric and magnetic fields are crossed, the particle exhibits drift motion perpendicular to both fields. The drift velocity can be expressed as:</li>
+</ul>
+<div class="arithmatex">\[
+v_d = \frac{E}{B}
+\]</div>
+<hr/>
+<h4 id="deliverables">Deliverables:</h4>
+<ol>
+<li><strong>Markdown Document</strong>: Contains an explanation of the Lorentz force, its applications, and the simulation.</li>
+<li><strong>Python Script/Notebook</strong>: Implements the simulation and visualization of the particle's trajectory under various field configurations.</li>
+<li><strong>Visualizations</strong>: Plots showing the particle's path in 2D (and optionally 3D) for different scenarios.</li>
+<li><strong>Discussion</strong>: An analysis of how the results relate to practical systems such as cyclotrons, Tokamaks, and mass spectrometers, with suggestions for extending the simulation to more complex scenarios, like non-uniform fields.</li>
+</ol>
+<p>By varying the parameters, you can better understand the real-world applications of the Lorentz force, including the control of particles in accelerators, the separation of ions in mass spectrometers, and the confinement of plasma in fusion devices.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
