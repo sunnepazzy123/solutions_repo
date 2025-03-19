@@ -52,7 +52,7 @@ Here’s an outline for how you might approach the implementation:
 
 Here’s a simple implementation using Python and `networkx` to handle graph simplification:
 
-![payload Trajectory](../../_pics/circuit.png)
+![circuit](../../_pics/circuit.png)
 
 
 ### Testing the Implementation

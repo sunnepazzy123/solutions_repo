@@ -1,126 +1,49 @@
-import networkx as nx
+import numpy as np
 import matplotlib.pyplot as plt
+from scipy.constants import m_p, e, epsilon_0, mu_0
 
-def equivalent_resistance(graph):
-    # Keep simplifying the graph until only one node remains
-    while len(graph.nodes) > 1:
-        # Find series connections and simplify
-        series_edges = find_series_edges(graph)
-        for edge in series_edges:
-            simplify_series(graph, edge)
+# Constants
+q = e  # Charge of particle (Coulombs)
+m = m_p  # Mass of particle (kg)
+B = np.array([0, 0, 1])  # Magnetic field strength (Tesla) (along z-axis)
+E = np.array([0, 0, 0])  # Electric field strength (V/m) (no electric field for now)
+dt = 1e-6  # Time step (s)
+T_max = 1e-3  # Total simulation time (s)
+
+# Initial conditions
+v0 = np.array([1e5, 0, 0])  # Initial velocity (m/s)
+r0 = np.array([0, 0, 0])  # Initial position (m)
+
+# Function to compute Lorentz force
+def lorentz_force(v, E, B, q):
+    return q * (E + np.cross(v, B))  # Ensure cross product with 1D arrays
+
+# Euler's method to update position and velocity
+def simulate_motion(E, B, v0, r0, q, m, dt, T_max):
+    time_steps = int(T_max / dt)
+    r = np.zeros((time_steps, 3))
+    v = np.zeros((time_steps, 3))
+    
+    r[0] = r0
+    v[0] = v0
+    
+    for t in range(1, time_steps):
+        F = lorentz_force(v[t-1], E, B, q)  # Call lorentz_force for each time step
+        a = F / m  # Acceleration
+        v[t] = v[t-1] + a * dt  # Update velocity
+        r[t] = r[t-1] + v[t] * dt  # Update position
         
-        # Find parallel connections and simplify
-        parallel_edges = find_parallel_edges(graph)
-        for edge in parallel_edges:
-            simplify_parallel(graph, edge)
+    return r
 
-        # Plot the current graph after each iteration
-        plot_graph(graph)
+# Simulate the motion
+trajectory = simulate_motion(E, B, v0, r0, q, m, dt, T_max)
 
-    # After simplification, only one node remains; return its resistance
-    return graph.nodes[next(iter(graph.nodes))]['resistance']
-
-def find_series_edges(graph):
-    # Detect edges in series
-    series_edges = []
-    for edge in graph.edges(data=True):
-        u, v, data = edge
-        if data.get('type') == 'series':  # Check if edge type is series
-            series_edges.append((u, v))
-    return series_edges
-
-def find_parallel_edges(graph):
-    # Detect edges in parallel
-    parallel_edges = []
-    for edge in graph.edges(data=True):
-        u, v, data = edge
-        if data.get('type') == 'parallel':  # Check if edge type is parallel
-            parallel_edges.append((u, v))
-    return parallel_edges
-
-def simplify_series(graph, edge):
-    u, v = edge
-    # Get the resistances of both nodes
-    resistance_u = graph.nodes[u].get('resistance', 0)
-    resistance_v = graph.nodes[v].get('resistance', 0)
-
-    # Combine resistances for series connection
-    equivalent_resistance = resistance_u + resistance_v
-    print(f"Simplifying Series: {resistance_u} + {resistance_v} = {equivalent_resistance}")
-    
-    # Replace nodes u and v with a new node that has the equivalent resistance
-    new_node = f"{u}-{v}"  # Create a new node name
-    graph.add_node(new_node, resistance=equivalent_resistance)
-    
-    # Remove the original series edge
-    graph.remove_edge(u, v)
-    
-    # Add new edges from the new node
-    for neighbor in list(graph.neighbors(u)):
-        if neighbor != v:
-            graph.add_edge(new_node, neighbor, type='series')
-    
-    for neighbor in list(graph.neighbors(v)):
-        if neighbor != u:
-            graph.add_edge(new_node, neighbor, type='series')
-
-    # Remove the old nodes from the graph
-    graph.remove_node(u)
-    graph.remove_node(v)
-
-def simplify_parallel(graph, edge):
-    u, v = edge
-    # Get the resistances of both nodes
-    resistance_u = graph.nodes[u].get('resistance', 0)
-    resistance_v = graph.nodes[v].get('resistance', 0)
-
-    # Combine resistances for parallel connection
-    equivalent_resistance = 1 / (1 / resistance_u + 1 / resistance_v)
-    print(f"Simplifying Parallel: 1/({1/resistance_u} + {1/resistance_v}) = {equivalent_resistance}")
-    
-    # Replace nodes u and v with a new node that has the equivalent resistance
-    new_node = f"{u}|{v}"  # Create a new node name
-    graph.add_node(new_node, resistance=equivalent_resistance)
-    
-    # Remove the original parallel edge
-    graph.remove_edge(u, v)
-    
-    # Add new edges from the new node
-    for neighbor in list(graph.neighbors(u)):
-        if neighbor != v:
-            graph.add_edge(new_node, neighbor, type='parallel')
-    
-    for neighbor in list(graph.neighbors(v)):
-        if neighbor != u:
-            graph.add_edge(new_node, neighbor, type='parallel')
-
-    # Remove the old nodes from the graph
-    graph.remove_node(u)
-    graph.remove_node(v)
-
-def plot_graph(graph):
-    # Use matplotlib to plot the current graph state
-    pos = nx.spring_layout(graph)  # positions for all nodes
-    labels = nx.get_edge_attributes(graph, 'type')
-    
-    # Draw nodes and edges
-    nx.draw(graph, pos, with_labels=True, node_size=2000, node_color="lightblue", font_size=12, font_weight="bold", font_color="black")
-    nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels)
-    
-    plt.title("Circuit Graph (Current State)")
-    plt.show()
-
-# Example usage
-G = nx.Graph()
-
-# Add nodes with resistance values
-G.add_node(1, resistance=5)
-G.add_node(2, resistance=10)
-G.add_node(3, resistance=15)
-
-# Add edges with types (series or parallel)
-G.add_edge(1, 2, type='series')
-G.add_edge(2, 3, type='parallel')
-
-# Print the final equivalent resistance
-print("Final Equivalent Resistance:", equivalent_resistance(G))
+# Plot the trajectory
+plt.figure(figsize=(8, 6))
+plt.plot(trajectory[:, 0], trajectory[:, 1], label="Particle Path")
+plt.xlabel("X Position (m)")
+plt.ylabel("Y Position (m)")
+plt.title("Trajectory of a Particle in a Uniform Magnetic Field")
+plt.grid(True)
+plt.legend()
+plt.show()
