@@ -172,6 +172,46 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="simulating-sampling-distributions-and-central-limit-theorem">Simulating Sampling Distributions and Central Limit Theorem</h1>
+<h2 id="1-simulating-sampling-distributions">1. Simulating Sampling Distributions</h2>
+<p>For this experiment, we will simulate three types of population distributions:</p>
+<ul>
+<li><strong>Uniform Distribution</strong>: Every number within a specified range has an equal chance of being selected.</li>
+<li><strong>Exponential Distribution</strong>: Describes the time between events in a Poisson process, characterized by a constant hazard rate.</li>
+<li><strong>Binomial Distribution</strong>: Represents the number of successes in a fixed number of Bernoulli trials.</li>
+</ul>
+<p>We will generate large datasets for each distribution to represent the population.</p>
+<h2 id="2-sampling-and-visualization">2. Sampling and Visualization</h2>
+<p>For each distribution, we will:
+- Randomly sample from the population.
+- Calculate the sample mean for different sample sizes (e.g., 5, 10, 30, 50).
+- Repeat the sampling process multiple times (e.g., 1,000 times) to create a sampling distribution of the sample mean.</p>
+<p>Histograms of the sample means will be plotted for each sample size, and we will observe how the distribution of sample means converges toward a normal distribution as the sample size increases.</p>
+<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
+<p>In this section, we will explore:
+- <strong>Shape of the Original Distribution</strong>: How the original population distribution (uniform, exponential, binomial) influences the sampling distribution.
+- <strong>Sample Size</strong>: Larger sample sizes should lead to sample means that more closely resemble a normal distribution.
+- <strong>Population Variance</strong>: The spread of the sample means is influenced by the population's variance. A population with higher variance will result in sample means that spread out more.</p>
+<h2 id="4-practical-applications">4. Practical Applications</h2>
+<p>The <strong>Central Limit Theorem</strong> (CLT) has several important real-world applications:</p>
+<ul>
+<li><strong>Estimating Population Parameters</strong>: Repeated sampling can help estimate population parameters like the population mean, even when the population distribution is not normal.</li>
+<li><strong>Quality Control in Manufacturing</strong>: Sampling is used to monitor product quality, allowing manufacturers to detect deviations from expected values without testing every item.</li>
+<li><strong>Predicting Outcomes in Financial Models</strong>: In finance, CLT helps to model aggregate outcomes (e.g., returns) over time, leading to normal approximations even if individual asset returns are not normally distributed.</li>
+</ul>
+<p><img alt="statistics_motion" src="../../../_pics/statistics-probem1.png"/></p>
+<h2 id="4-analysis-of-the-output">4. Analysis of the Output:</h2>
+<ul>
+<li>
+<p><strong>Histograms for Uniform Distribution</strong>: For small sample sizes, you may still see a skewed distribution. As the sample size increases, the sampling distribution of the sample means will converge toward normality.</p>
+</li>
+<li>
+<p><strong>Histograms for Exponential Distribution</strong>: Since the original distribution is skewed, smaller sample sizes may show skewness. As the sample size increases, the sampling distribution of the mean becomes more normal.</p>
+</li>
+<li>
+<p><strong>Histograms for Binomial Distribution</strong>: For smaller sample sizes, the distribution may appear more discrete, but as the sample size increases, the sample mean’s distribution will approximate normality.</p>
+</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

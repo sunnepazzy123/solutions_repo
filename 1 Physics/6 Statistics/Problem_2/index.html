@@ -172,6 +172,62 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="estimating-using-a-circle">Estimating π Using a Circle</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation:</h2>
+<p>The ratio of points inside a circle to the total number of points within a square can be used to estimate the value of π. To illustrate this, we consider a unit circle inscribed in a square with side length 2 (a square with vertices at (-1,-1), (1,-1), (1,1), and (-1,1)).</p>
+<p>For a random point inside the square, the probability of that point lying inside the circle is the ratio of the area of the circle to the area of the square. </p>
+<ul>
+<li>The area of the circle is π * r², and since the radius of the unit circle is 1, the area becomes π.</li>
+<li>The area of the square is 2 * 2 = 4.</li>
+</ul>
+<p>Thus, the ratio of points inside the circle to the total number of points inside the square is approximately π/4.</p>
+<h3 id="formula-derivation">Formula Derivation:</h3>
+<p>For a unit circle (r = 1) inscribed in a square, the formula to estimate π is:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \times \frac{\text{Number of points inside the circle}}{\text{Total number of points in the square}}
+\]</div>
+<h2 id="2-simulation">2. Simulation:</h2>
+<ol>
+<li>Generate random points within a 2D square (e.g., with coordinates between -1 and 1).</li>
+<li>For each point, check whether it lies inside the unit circle using the equation <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</li>
+<li>Estimate π by calculating the ratio of points inside the circle to the total number of points and multiplying by 4.</li>
+</ol>
+<h2 id="3-visualization">3. Visualization:</h2>
+<p>Create a plot to visualize the randomly generated points. Distinguish between points inside the circle (marked with one color) and points outside the circle (marked with another color).</p>
+<h2 id="4-analysis">4. Analysis:</h2>
+<ul>
+<li><strong>Accuracy Improvement</strong>: As the number of random points increases, the estimate of π will converge to the true value of π.</li>
+<li><strong>Convergence Rate</strong>: The accuracy improves as the square root of the number of points, i.e., the error decreases by a factor of 1/√N, where N is the number of points.</li>
+<li><strong>Computational Considerations</strong>: This method can be computationally expensive as the number of points grows, but it is simple to implement in simulations.</li>
+</ul>
+<hr/>
+<h1 id="estimating-using-buffons-needle">Estimating π Using Buffon’s Needle</h1>
+<h2 id="1-theoretical-foundation_1">1. Theoretical Foundation:</h2>
+<p>Buffon’s Needle problem involves dropping a needle of length <span class="arithmatex">\(l\)</span> onto a floor with parallel lines spaced a distance <span class="arithmatex">\(d\)</span> apart. The probability that the needle crosses one of the lines can be used to estimate π.</p>
+<p>The formula for estimating π is:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2l}{d} \times \frac{1}{N} \times C
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(l\)</span> is the length of the needle,
+- <span class="arithmatex">\(d\)</span> is the distance between the parallel lines,
+- <span class="arithmatex">\(N\)</span> is the number of needle drops,
+- <span class="arithmatex">\(C\)</span> is the number of times the needle crosses a line.</p>
+<h2 id="2-simulation_1">2. Simulation:</h2>
+<ol>
+<li>Simulate the random dropping of a needle onto the plane. The angle at which the needle lands and the distance from the nearest line must be chosen randomly.</li>
+<li>Count the number of times the needle crosses a line.</li>
+<li>Use the formula to estimate π based on the number of crossings.</li>
+</ol>
+<h2 id="3-visualization_1">3. Visualization:</h2>
+<p>Create a graphical representation of the simulation, showing the needle positions relative to the lines. This will help visualize how the needle placement and line crossings affect the estimate.</p>
+<p><img alt="statistics_motion" src="../../../_pics/needle_drops_simulation.png"/></p>
+<h2 id="4-analysis_1">4. Analysis:</h2>
+<ul>
+<li><strong>Effect of Needle Drops</strong>: As the number of needle drops increases, the estimate of π will become more accurate.</li>
+<li><strong>Convergence Rate</strong>: Similar to the circle-based approach, the accuracy improves as the number of trials increases, but the rate of convergence depends on the geometry and the randomness in the simulation.</li>
+<li><strong>Comparison with the Circle-Based Method</strong>: Buffon’s Needle requires fewer random numbers to generate than the circle-based method for a comparable level of accuracy, but the convergence rate may be slower.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
