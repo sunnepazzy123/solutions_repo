@@ -8,7 +8,7 @@ This experiment uses a simple pendulum to determine the acceleration due to grav
 
 ## Pendulum Setup Diagram
 
-![Simple Pendulum Diagram](../../_pics/pendelum.png)
+![Simple Pendulum Diagram](../../_pics/measurementPendunlum1.png)
 
 *Figure 1: A simple pendulum consisting of a mass `m` suspended on a string of length `L` from a fixed point. It swings through a small angle θ (<15°).*
 
@@ -57,8 +57,3 @@ This experiment uses a simple pendulum to determine the acceleration due to grav
 | 10    | 20.14    |
 
 ---
-
-## Calculations
-
-### 1. Mean Time & Period
-
