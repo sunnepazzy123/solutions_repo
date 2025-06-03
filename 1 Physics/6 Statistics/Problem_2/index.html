@@ -174,59 +174,156 @@
 <h1 id="problem-2">Problem 2</h1>
 <h1 id="estimating-using-a-circle">Estimating π Using a Circle</h1>
 <h2 id="1-theoretical-foundation">1. Theoretical Foundation:</h2>
-<p>The ratio of points inside a circle to the total number of points within a square can be used to estimate the value of π. To illustrate this, we consider a unit circle inscribed in a square with side length 2 (a square with vertices at (-1,-1), (1,-1), (1,1), and (-1,1)).</p>
-<p>For a random point inside the square, the probability of that point lying inside the circle is the ratio of the area of the circle to the area of the square. </p>
+<p>When you randomly generate points uniformly inside a square that bounds a circle, the fraction of points that fall inside the circle approximates the ratio of the circle's area to the square's area.</p>
+<p>For a unit circle (radius <span class="arithmatex">\(r = 1\)</span>) inside a square with side length 2, the areas are:</p>
 <ul>
-<li>The area of the circle is π * r², and since the radius of the unit circle is 1, the area becomes π.</li>
-<li>The area of the square is 2 * 2 = 4.</li>
+<li>
+<p>Circle area:<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(\pi \times 1^2 = \pi\)</span>\)</span></p>
+</li>
+<li>
+<p>Square area:<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(2 \times 2 = 4\)</span>\)</span></p>
+</li>
 </ul>
-<p>Thus, the ratio of points inside the circle to the total number of points inside the square is approximately π/4.</p>
-<h3 id="formula-derivation">Formula Derivation:</h3>
-<p>For a unit circle (r = 1) inscribed in a square, the formula to estimate π is:</p>
+<p>The probability that a randomly chosen point in the square lies inside the circle is:</p>
 <div class="arithmatex">\[
-\pi \approx 4 \times \frac{\text{Number of points inside the circle}}{\text{Total number of points in the square}}
+P = \frac{\text{Area of Circle}}{\text{Area of Square}} = \frac{\pi}{4}
 \]</div>
+<p>If you generate <span class="arithmatex">\(N\)</span> points in the square, and <span class="arithmatex">\(N_{\text{inside}}\)</span> points lie inside the circle, then:</p>
+<div class="arithmatex">\[
+\frac{N_{\text{inside}}}{N} \approx \frac{\pi}{4}
+\]</div>
+<p>Rearranging gives an estimate for <span class="arithmatex">\(\pi\)</span>:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \times \frac{N_{\text{inside}}}{N}
+\]</div>
+<p>Thus, by counting the fraction of points inside the circle and multiplying by 4, you get an approximation of <span class="arithmatex">\(\pi\)</span>.</p>
+<h3 id="derivation-of-the-formula">Derivation of the Formula</h3>
+<div class="arithmatex">\[
+\pi = 4 \times \frac{N_{\text{inside}}}{N}
+\]</div>
+<p>for a Unit Circle</p>
+<p>Consider a unit circle centered at the origin with radius <span class="arithmatex">\(r = 1\)</span>, and the square that bounds it with side length 2.</p>
+<ul>
+<li><strong>Area of the unit circle:</strong></li>
+</ul>
+<div class="arithmatex">\[
+A_{\text{circle}} = \pi r^2 = \pi \times 1^2 = \pi
+\]</div>
+<ul>
+<li><strong>Area of the bounding square:</strong></li>
+</ul>
+<div class="arithmatex">\[
+A_{\text{square}} = (2r)^2 = 2^2 = 4
+\]</div>
+<p>If points are uniformly randomly generated within the square, the probability <span class="arithmatex">\(P\)</span> that a point lies inside the circle is the ratio of the two areas:</p>
+<div class="arithmatex">\[
+P = \frac{A_{\text{circle}}}{A_{\text{square}}} = \frac{\pi}{4}
+\]</div>
+<p>Suppose <span class="arithmatex">\(N\)</span> points are generated and <span class="arithmatex">\(N_{\text{inside}}\)</span> points fall inside the circle. The ratio of points inside the circle to total points approximates <span class="arithmatex">\(P\)</span>:</p>
+<div class="arithmatex">\[
+\frac{N_{\text{inside}}}{N} \approx \frac{\pi}{4}
+\]</div>
+<p>Multiply both sides by 4 to isolate <span class="arithmatex">\(\pi\)</span>:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \times \frac{N_{\text{inside}}}{N}
+\]</div>
+<p>This formula allows us to estimate <span class="arithmatex">\(\pi\)</span> by counting the fraction of points inside the circle.</p>
 <h2 id="2-simulation">2. Simulation:</h2>
-<ol>
-<li>Generate random points within a 2D square (e.g., with coordinates between -1 and 1).</li>
-<li>For each point, check whether it lies inside the unit circle using the equation <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span>.</li>
-<li>Estimate π by calculating the ratio of points inside the circle to the total number of points and multiplying by 4.</li>
-</ol>
-<h2 id="3-visualization">3. Visualization:</h2>
-<p>Create a plot to visualize the randomly generated points. Distinguish between points inside the circle (marked with one color) and points outside the circle (marked with another color).</p>
-<h2 id="4-analysis">4. Analysis:</h2>
-<ul>
-<li><strong>Accuracy Improvement</strong>: As the number of random points increases, the estimate of π will converge to the true value of π.</li>
-<li><strong>Convergence Rate</strong>: The accuracy improves as the square root of the number of points, i.e., the error decreases by a factor of 1/√N, where N is the number of points.</li>
-<li><strong>Computational Considerations</strong>: This method can be computationally expensive as the number of points grows, but it is simple to implement in simulations.</li>
-</ul>
-<hr/>
-<h1 id="estimating-using-buffons-needle">Estimating π Using Buffon’s Needle</h1>
-<h2 id="1-theoretical-foundation_1">1. Theoretical Foundation:</h2>
-<p>Buffon’s Needle problem involves dropping a needle of length <span class="arithmatex">\(l\)</span> onto a floor with parallel lines spaced a distance <span class="arithmatex">\(d\)</span> apart. The probability that the needle crosses one of the lines can be used to estimate π.</p>
-<p>The formula for estimating π is:</p>
-<div class="arithmatex">\[
-\pi \approx \frac{2l}{d} \times \frac{1}{N} \times C
-\]</div>
-<p>Where:
-- <span class="arithmatex">\(l\)</span> is the length of the needle,
-- <span class="arithmatex">\(d\)</span> is the distance between the parallel lines,
-- <span class="arithmatex">\(N\)</span> is the number of needle drops,
-- <span class="arithmatex">\(C\)</span> is the number of times the needle crosses a line.</p>
-<h2 id="2-simulation_1">2. Simulation:</h2>
 <ol>
 <li>Simulate the random dropping of a needle onto the plane. The angle at which the needle lands and the distance from the nearest line must be chosen randomly.</li>
 <li>Count the number of times the needle crosses a line.</li>
 <li>Use the formula to estimate π based on the number of crossings.</li>
 </ol>
-<h2 id="3-visualization_1">3. Visualization:</h2>
+<h4 id="objective">Objective:</h4>
+<p>Simulate random point generation within a square to estimate the value of π using the ratio of points that fall inside the inscribed circle.</p>
+<h4 id="steps">Steps:</h4>
+<ol>
+<li>Generate random points <span class="arithmatex">\((x, y)\)</span> such that:</li>
+<li><span class="arithmatex">\(x \in [-1, 1]\)</span></li>
+<li><span class="arithmatex">\(y \in [-1, 1]\)</span></li>
+</ol>
+<p>This represents a square bounding the unit circle.</p>
+<ol>
+<li>
+<p>Check if each point lies inside the circle:
+   $$
+   x^2 + y^2 \leq 1
+   $$</p>
+</li>
+<li>
+<p>Count points inside the circle and estimate π using:
+   $$
+   \pi \approx 4 \times \frac{\text{Number of points inside the circle}}{\text{Total number of points}}
+   $$</p>
+</li>
+</ol>
+<h4 id="python-code">Python Code:</h4>
+<pre><code class="language-python">import random
+
+def monte_carlo_pi(num_points=10000):
+    inside_circle = 0
+
+    for _ in range(num_points):
+        x, y = random.uniform(-1, 1), random.uniform(-1, 1)
+        if x**2 + y**2 &lt;= 1:
+            inside_circle += 1
+
+    pi_estimate = 4 * inside_circle / num_points
+    return pi_estimate
+
+# Example usage
+print("Estimated π:", monte_carlo_pi(10000))
+</code></pre>
+<h2 id="3-visualization">3. Visualization:</h2>
 <p>Create a graphical representation of the simulation, showing the needle positions relative to the lines. This will help visualize how the needle placement and line crossings affect the estimate.</p>
-<p><img alt="statistics_motion" src="../../../_pics/needle_drops_simulation.png"/></p>
-<h2 id="4-analysis_1">4. Analysis:</h2>
+<p><img alt="statistics_motion" src="../../../_pics/monte_carlo_pi.png"/></p>
+<h2 id="4-analysis">4. Analysis:</h2>
 <ul>
-<li><strong>Effect of Needle Drops</strong>: As the number of needle drops increases, the estimate of π will become more accurate.</li>
-<li><strong>Convergence Rate</strong>: Similar to the circle-based approach, the accuracy improves as the number of trials increases, but the rate of convergence depends on the geometry and the randomness in the simulation.</li>
-<li><strong>Comparison with the Circle-Based Method</strong>: Buffon’s Needle requires fewer random numbers to generate than the circle-based method for a comparable level of accuracy, but the convergence rate may be slower.</li>
+<li>Investigate how the accuracy of the estimate improves as the number of points increases.</li>
+<li>Discuss the convergence rate and computational considerations for this method.</li>
+</ul>
+<h3 id="accuracy-improvement-with-increasing-points">Accuracy Improvement with Increasing Points</h3>
+<p>As the number of random points <span class="arithmatex">\(N\)</span> increases, the Monte Carlo estimate of <span class="arithmatex">\(\pi\)</span> generally becomes more accurate. This happens because the <strong>law of large numbers</strong> ensures that the sample ratio (points inside circle vs. total points) converges to the true probability.</p>
+<table>
+<thead>
+<tr>
+<th>Number of points</th>
+<th>Estimated π</th>
+<th>Error (|Estimated - π|)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1,000</td>
+<td>~3.14</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td>~3.141</td>
+<td>Smaller</td>
+</tr>
+<tr>
+<td>100,000</td>
+<td>~3.1415</td>
+<td>Even smaller</td>
+</tr>
+</tbody>
+</table>
+<h3 id="convergence-rate">Convergence Rate</h3>
+<ul>
+<li>The convergence rate of Monte Carlo methods is proportional to <span class="arithmatex">\( \frac{1}{\sqrt{N}} \)</span>, where <span class="arithmatex">\(N\)</span> is the number of samples.</li>
+<li>This means <strong>to improve accuracy by a factor of 10, you must increase the number of points by 100</strong>.</li>
+<li>Monte Carlo methods are <strong>slow to converge</strong> compared to deterministic methods but are simple and versatile.</li>
+</ul>
+<h3 id="computational-considerations">Computational Considerations</h3>
+<ul>
+<li>The algorithm is <strong>embarrassingly parallel</strong>: each point’s check is independent, making it easy to parallelize.</li>
+<li>Computational cost scales linearly with <span class="arithmatex">\(N\)</span>.</li>
+<li>For very large <span class="arithmatex">\(N\)</span>, memory and runtime increase, but with modern hardware and parallelization, millions of points can be handled efficiently.</li>
+<li>Monte Carlo is especially useful when other analytic or numeric integration methods become infeasible.</li>
 </ul>
 </div>
 </div><footer>
